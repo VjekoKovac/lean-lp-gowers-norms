@@ -1,0 +1,179 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+project:
+  name: "Estimates for Lᵖ variants of Gowers norms"
+  authors: ["Vjekoslav Kovač", "Keith M. Rogers"]
+  responsible_maintainers: ["Vjekoslav Kovač"]
+  license: "Apache-2.0"
+  description: >-
+    This proof development records all five introductory theorems of
+    arXiv:2609.08916v2 and proves the following source results. Let G be a
+    second-countable locally compact Hausdorff abelian group, μ any Haar
+    measure, and f a nonnegative measurable function. Let R_d f(h) be the
+    integral over x of the product of f(x+Σ_{i∈S} h_i) over all subsets S
+    of {1,…,d}, U(d,p)=‖R_d f‖_p^{1/2^d}, U_d=U(d,1), and q=2^d p/(d+p).
+    Theorem 1.1 states that for each d≥2 there is ε_d∈(0,1)
+    such that whenever G has no compact open subgroup,
+    U_d≤(1−ε_d)U_{d−1}^{d/(3d−2)} U_{d+1}^{1−d/(3d−2)}.
+    The same ε_d works for every group, Haar normalization, and input.
+    Theorem 1.2(a) gives, for d≥2 and every finite real
+    p≥d/(2^d−1), U(d,p)≤‖f‖_q, including the lower endpoint.
+    For p strictly above that endpoint, given η>0 there exists δ>0 depending
+    only on d,p,η such that for every 0<ε<δ and every 0<N=‖f‖_q<∞ with
+    U(d,p)≥(1−ε)N, there exist a compact open subgroup H and a coset C₀
+    of H satisfying ‖f−[N/μ(H)^{1/q}]1_{C₀}‖_q≤ηN.
+    In Theorem 1.3(a), on ℝⁿ with Lebesgue measure, d≥2, n≥1 and
+    1≤p<∞, the least constant in U(d,p)≤C‖f‖_q is
+    C=[2^{2d}p^p/(d+p)^{d+p}]^{n/(2^{d+1}p)}. For 0<‖f‖_q<∞,
+    equality holds if and only if f agrees almost everywhere with
+    c exp(−(x−x₀)ᵀM(x−x₀)), where c>0, x₀∈ℝⁿ, and M is a real
+    symmetric positive-definite matrix. Part 1.3(b) remains open in
+    this development. It asserts that for each η>0 there exists δ>0
+    depending only on d,p,n,η such that U(d,p)≥(1−ε)C‖f‖_q for
+    0<ε<δ and 0<‖f‖_q<∞ implies the existence of a Gaussian g with
+    ‖g‖_q=‖f‖_q and ‖f−g‖_q≤η‖f‖_q.
+    For Theorem 1.4(a), for d≥2 write W=∏_i U(d−1,p_i)^{θ_i},
+    with finite p_i>0, Σθ_i=1 and (1−1/p)/(d−1)=θ_i(1−2/p_i)
+    for every i. Then U(d,p)≤W when 0<p≤1 and every θ_i>0.
+    Conversely W≤U(d,p) when 1<p<∞, θ_1>0, the other weights are
+    negative, the input is nonzero modulo null sets and all the functionals
+    are finite. For p=1 there is equality. In (b), fix these parameters,
+    p≠1, and positive finite functionals. For each η>0, one δ>0 works
+    over all groups and inputs. If 0<ε<δ and U(d,p)≥(1−ε)W in the forward
+    case or W≥(1−ε)U(d,p) in the reverse case, there exist probability
+    densities r₁,…,r_d on G. In L¹, normalized (R_d f)^p is within η of
+    the product of all r_j, and for every i normalized (R_{d−1} f)^{p_i}
+    is within η of the product of all r_j except r_i. Each autocorrelation power is
+    divided by its own integral.
+    For positive integers d≥2, p≥1, n≥2,
+    t is the least exponent bounding the (d,p)-cube energy of every nonempty
+    A⊆{0,…,n−1}^m by |A|^t, uniformly in m. Write q* for the greatest
+    exponent with U(d,p)≤‖f‖_{ℓ^{q*}} on that cube uniformly in m.
+    The proof establishes attainment and q*t=2^d p. Part 1.5(a) gives
+    t(d,p,2)=log₂(2^p+2d) and q*(d,p,2)=2^d p/t(d,p,2).
+    Part 1.5(b) is proved. Let B=((d+p)log₂(d+p)−p log₂p−2d)/2.
+    There exists an absolute c>0 such that for every fixed d,p, as n→∞,
+    d+p−(1+o_{d,p}(1))B/log₂n≤t(d,p,n)≤d+p−c/log₂n.
+    In 1.5(c) let H be the Shannon entropy in bits of Bin(n−1,1/2)
+    and M(d)=((n−1)log₂(2d)−log₂((n−1)!))/H. For every fixed n,p and
+    η>0, |t(d,p,n)−M(d)|≤η for all sufficiently large d.
+classification:
+  arxiv: ["math.CA", "math.CO"]
+  msc2020: ["26D15", "11B30", "43A70", "94A17"]
+sources:
+  - title: "Estimates for Lᵖ variants of Gowers norms"
+    authors: ["Vjekoslav Kovač", "Keith M. Rogers"]
+    type: "article"
+    id: "arXiv:2609.08916v2"
+    location: "https://arxiv.org/abs/2609.08916v2"
+    relationship: "formalizes"
+    note: "Introduction, Theorems 1.1–1.5, with proofs in §§2–6 and 8. The uploaded TeX matches the versioned arXiv source byte for byte."
+related_formalizations:
+  - relationship: "builds-on"
+    id: "https://github.com/hanyi162013-Yihan/geometric-brascamp-lieb/tree/9155169a5ba8f7db77c01c446430e50c0daceb7d"
+    note: "Yi Han's extended nonnegative geometric Brascamp–Lieb inequality, ported from Lean 4.33 to 4.36."
+status:
+  scope: >-
+    Partial proof development. Theorems 1.1, 1.2, 1.4, and 1.5 are proved in full. The five complete
+    headline propositions are independently stated in Challenge.lean.
+    The main Comparator configuration demands all five. The separate
+    component configuration only advertises proved declarations. See
+    docs/SOURCE.md and docs/VERIFICATION.md for detailed coverage.
+  # Counts cover the proof library and Solution; Challenge holes specify targets.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "LpGowers.theorem_1_1"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.components.json"
+      literature_dependencies: []
+    - declaration: "LpGowers.theorem_1_2"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.components.json"
+      literature_dependencies: []
+    - declaration: "LpGowers.theorem_1_3a"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.components.json"
+      literature_dependencies: []
+    - declaration: "LpGowers.theorem_1_4"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.components.json"
+      literature_dependencies: []
+    - declaration: "LpGowers.theorem_1_5"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.components.json"
+      literature_dependencies: []
+automation:
+  methods:
+    - method: "agent"
+      models: ["OpenAI GPT-6 family, Codex"]
+      framework: "Codex Work Mode with independent AI source review and Lean 4"
+      tool_setup: "Mathlib, Lake, Lean kernel, Lean Comparator, NanoDa and con-ron. Exact toolchain and commands are in docs/VERIFICATION.md."
+      cost:
+        wall_time: "One interactive development session"
+        spend_usd: "not tracked"
+        hardware: "Linux x86_64 workspace"
+      prompting_notes: "Follow the manuscript proof routes, keep quantifiers and constants source-faithful, and report open obligations explicitly."
+  spend_usd: "not tracked"
+  notes: "The user designated the formalization authors. AI agents wrote the Lean development and performed the recorded AI reviews."
+fidelity:
+  divergences: >-
+    Functions take finite nonnegative values, as in the five source theorems.
+    Haar-completion measurability is AEMeasurable with respect to the Borel
+    Haar measure. Unconditional inequalities use extended nonnegative
+    integrals. Uniform little-o conclusions use tolerance-before-threshold
+    quantification. The finite set energy is defined by counting tuples.
+    The code and the source use positive integers for the discrete parameter p.
+review:
+  status: "Independently AI-reviewed; no human statement approval recorded."
+  reviewers: ["Separate Codex AI statement reviewer", "Codex AI integration reviewer"]
+  notes: "The source, independent statement and proof checks, and their limits are documented in docs/REVIEW.md and docs/VERIFICATION.md."
+alignment:
+  namespace: "LpGowers"
+  statements:
+    - source: "Theorem 1.1, improved log-convexity"
+      lean: "LpGowers.theorem_1_1"
+      module: "Solution"
+      status: "proved"
+      note: "For every d≥2 one ε_d∈(0,1) works for every G without a compact open subgroup: U_d≤(1−ε_d) U_{d−1}^{d/(3d−2)} U_{d+1}^{1−d/(3d−2)}. The proof derives a compact open subgroup from near closure under addition by the alternative argument suggested at the end of §6."
+    - source: "Theorem 1.2, Lebesgue estimate and coset stability"
+      lean: "LpGowers.theorem_1_2"
+      module: "Solution"
+      status: "proved"
+      note: "For p strictly above the endpoint and finite nonzero Lq input, nearness to equality implies normalized Lq distance tending to zero to the amplitude ‖f‖q/μ(H)^{1/q} on a single coset of a compact open subgroup, uniformly in G and μ."
+    - source: "Theorem 1.3, sharp Euclidean inequality and Gaussian stability"
+      lean: "LpGowers.EuclideanTheorem"
+      module: "LpGowers.Euclidean"
+      status: "part (a) proved in full; part (b) outstanding"
+      note: "LpGowers.theorem_1_3a proves the universal sharp upper bound, optimality, and both directions of Gaussian equality classification. A checked reduction shows that part (b) follows from strong Lʳ precompactness, modulo affine transformations, of normalized near-extremizing sequences for ordinary Euclidean sharp Young. This compactness input is outstanding."
+    - source: "Theorem 1.4, forward and reverse degree lowering, and near equality"
+      lean: "LpGowers.theorem_1_4"
+      module: "Solution"
+      status: "proved"
+      note: "For p≠1 and finite positive norms, near equality in the relevant direction requires one common family of integral-one factors r_j simultaneously approximating normalized (R_d f)^p and every normalized (R_{d−1} f)^{p_i} in L¹, with the i-th factor omitted in the i-th marginal."
+    - source: "Theorem 1.5, discrete cubes and critical exponents"
+      lean: "LpGowers.theorem_1_5"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Part (a) proves t(d,p,2)=log₂(2^p+2d), q(d,p,2)=2^d p/t. Parts (b) and (c) prove
+        d+p−(1+o(1))[(d+p)log₂(d+p)−p log₂p−2d]/(2log₂ n)≤t(d,p,n)≤d+p−c/log₂ n
+        with absolute c>0, and t(d,p,n)=[(n−1)log₂(2d)−log₂((n−1)!)]/H(Bin(n−1,1/2))+o(1)
+        for fixed n,p as d→∞. The error in this last claim is additive.
+acknowledgements: >-
+  The proofs reuse Mathlib's product Haar and Lebesgue integration,
+  Hölder inequalities, Gaussian integrals, real powers, and finite-set
+  combinatorics. docs/SOURCE.md attributes the paper's external mathematical
+  ingredients. The checking script is adapted from PalomarTemplate. The
+  repository structure was inspired by the Durcik–Fraccaroli–Roos project. The Euclidean sharp constant uses Yi Han’s geometric Brascamp–Lieb proof at commit 9155169a5ba8f7db77c01c446430e50c0daceb7d.

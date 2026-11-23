@@ -1,0 +1,73 @@
+name: Lean build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and check the proof development
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
+        with:
+          auto-config: false
+          use-mathlib-cache: true
+          build: false
+      - name: Build the library, Challenge and Solution
+        run: lake build LpGowers Challenge Solution
+      - name: Report and check axioms
+        run: |
+          set -o pipefail
+          lake env lean Axioms.lean | tee axioms.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: axiom-report
+          path: axioms.log
+  comparator:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - title: Compare proved components
+            config: comparator.components.json
+          - title: Check all five introductory theorems
+            config: comparator.json
+    name: ${{ matrix.title }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
+        with:
+          auto-config: false
+          use-mathlib-cache: true
+          build: false
+      - name: Install bubblewrap
+        run: sudo apt-get update -qq && sudo apt-get install -y bubblewrap
+      - name: Enable unprivileged user namespaces on the hosted runner
+        shell: bash
+        run: |
+          if [[ -e /proc/sys/kernel/apparmor_restrict_unprivileged_userns ]]; then
+            sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          fi
+      - name: Replay this statement set
+        run: |
+          set -o pipefail
+          bash scripts/verify-comparator.sh "${{ matrix.config }}" 2>&1 | tee comparator.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: ${{ matrix.config }}-log
+          path: comparator.log

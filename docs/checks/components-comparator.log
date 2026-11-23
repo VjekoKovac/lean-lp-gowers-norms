@@ -1,0 +1,58 @@
+$ scripts/with-offline-namespace.sh scripts/verify-comparator.sh comparator.components.json
+Resolving dependencies
+Building Challenge
+⚠ [5386/5388] Replayed Challenge
+warning: Challenge.lean:348:8: declaration uses `sorry`
+warning: Challenge.lean:351:8: declaration uses `sorry`
+warning: Challenge.lean:354:8: declaration uses `sorry`
+warning: Challenge.lean:357:8: declaration uses `sorry`
+warning: Challenge.lean:360:8: declaration uses `sorry`
+warning: Challenge.lean:363:8: declaration uses `sorry`
+warning: Challenge.lean:379:8: declaration uses `sorry`
+warning: Challenge.lean:386:8: declaration uses `sorry`
+warning: Challenge.lean:393:8: declaration uses `sorry`
+warning: Challenge.lean:400:8: declaration uses `sorry`
+warning: Challenge.lean:408:8: declaration uses `sorry`
+warning: Challenge.lean:414:8: declaration uses `sorry`
+warning: Challenge.lean:419:8: declaration uses `sorry`
+warning: Challenge.lean:423:8: declaration uses `sorry`
+warning: Challenge.lean:431:8: declaration uses `sorry`
+warning: Challenge.lean:436:8: declaration uses `sorry`
+warning: Challenge.lean:442:8: declaration uses `sorry`
+warning: Challenge.lean:447:8: declaration uses `sorry`
+warning: Challenge.lean:452:8: declaration uses `sorry`
+warning: Challenge.lean:455:8: declaration uses `sorry`
+warning: Challenge.lean:458:8: declaration uses `sorry`
+warning: Challenge.lean:465:8: declaration uses `sorry`
+warning: Challenge.lean:471:8: declaration uses `sorry`
+warning: Challenge.lean:474:8: declaration uses `sorry`
+warning: Challenge.lean:478:8: declaration uses `sorry`
+warning: Challenge.lean:482:8: declaration uses `sorry`
+warning: Challenge.lean:486:8: declaration uses `sorry`
+warning: Challenge.lean:491:8: declaration uses `sorry`
+warning: Challenge.lean:496:8: declaration uses `sorry`
+warning: Challenge.lean:508:8: declaration uses `sorry`
+warning: Challenge.lean:513:8: declaration uses `sorry`
+warning: Challenge.lean:522:8: declaration uses `sorry`
+warning: Challenge.lean:526:8: declaration uses `sorry`
+warning: Challenge.lean:530:8: declaration uses `sorry`
+warning: Challenge.lean:534:8: declaration uses `sorry`
+Build completed successfully (5388 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3a, LpGowers.theorem_1_4, LpGowers.theorem_1_5, LpGowers.Checked.subgroupIndicator, LpGowers.Checked.marginal, LpGowers.Checked.degreeOneExponent, LpGowers.Checked.exactMoments, LpGowers.Checked.scalarGaussianCorrelation, LpGowers.Checked.binaryEnergy, LpGowers.Checked.binaryLower, LpGowers.Checked.finiteInterpolation, LpGowers.Checked.euclideanSharpEstimate, LpGowers.Checked.gaussianEquality, LpGowers.Checked.euclideanNecessaryConstant, LpGowers.Checked.largeSideLimit, LpGowers.Checked.lebesgueInequality, LpGowers.Checked.degreeInequalities, LpGowers.Checked.ordinaryLogConvex, LpGowers.Checked.allGaussianEquality, LpGowers.Checked.binarySetExponent, LpGowers.Checked.binaryEnergyAllDimensions, LpGowers.Checked.setAttainment, LpGowers.Checked.functionAttainment, LpGowers.Checked.productUpper, LpGowers.Checked.binaryLargeDegree, LpGowers.Checked.nearThreeMoments, LpGowers.Checked.binaryBothExponents, LpGowers.Checked.diagonalLeakage, LpGowers.Checked.binarySharp, LpGowers.Checked.criticalExponents, LpGowers.Checked.largeSideSharp, LpGowers.Checked.largeDegreeLower, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
+Building Solution
+ℹ [7019/7451] Replayed LpGowers.InverseDifference
+info: LpGowers/InverseDifference.lean:82:34: Try this:
+  [apply] abel_nf
+Build completed successfully (7946 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3a, LpGowers.theorem_1_4, LpGowers.theorem_1_5, LpGowers.Checked.subgroupIndicator, LpGowers.Checked.marginal, LpGowers.Checked.degreeOneExponent, LpGowers.Checked.exactMoments, LpGowers.Checked.scalarGaussianCorrelation, LpGowers.Checked.binaryEnergy, LpGowers.Checked.binaryLower, LpGowers.Checked.finiteInterpolation, LpGowers.Checked.euclideanSharpEstimate, LpGowers.Checked.gaussianEquality, LpGowers.Checked.euclideanNecessaryConstant, LpGowers.Checked.largeSideLimit, LpGowers.Checked.lebesgueInequality, LpGowers.Checked.degreeInequalities, LpGowers.Checked.ordinaryLogConvex, LpGowers.Checked.allGaussianEquality, LpGowers.Checked.binarySetExponent, LpGowers.Checked.binaryEnergyAllDimensions, LpGowers.Checked.setAttainment, LpGowers.Checked.functionAttainment, LpGowers.Checked.productUpper, LpGowers.Checked.binaryLargeDegree, LpGowers.Checked.nearThreeMoments, LpGowers.Checked.binaryBothExponents, LpGowers.Checked.diagonalLeakage, LpGowers.Checked.binarySharp, LpGowers.Checked.criticalExponents, LpGowers.Checked.largeSideSharp, LpGowers.Checked.largeDegreeLower, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+Running con-ron kernel on solution
+con-ron: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)
+con-ron: accepted 59436 declarations (--verified)
+con-ron kernel accepts the solution
+Running nanoda kernel on solution
+nanoda kernel accepts the solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!
+
+Exit status: 0

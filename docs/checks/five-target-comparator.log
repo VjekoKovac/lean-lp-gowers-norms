@@ -1,0 +1,64 @@
+$ scripts/with-offline-namespace.sh scripts/verify-comparator.sh comparator.json
+Resolving dependencies
+Building Challenge
+⚠ [5386/5388] Replayed Challenge
+warning: Challenge.lean:348:8: declaration uses `sorry`
+warning: Challenge.lean:351:8: declaration uses `sorry`
+warning: Challenge.lean:354:8: declaration uses `sorry`
+warning: Challenge.lean:357:8: declaration uses `sorry`
+warning: Challenge.lean:360:8: declaration uses `sorry`
+warning: Challenge.lean:363:8: declaration uses `sorry`
+warning: Challenge.lean:379:8: declaration uses `sorry`
+warning: Challenge.lean:386:8: declaration uses `sorry`
+warning: Challenge.lean:393:8: declaration uses `sorry`
+warning: Challenge.lean:400:8: declaration uses `sorry`
+warning: Challenge.lean:408:8: declaration uses `sorry`
+warning: Challenge.lean:414:8: declaration uses `sorry`
+warning: Challenge.lean:419:8: declaration uses `sorry`
+warning: Challenge.lean:423:8: declaration uses `sorry`
+warning: Challenge.lean:431:8: declaration uses `sorry`
+warning: Challenge.lean:436:8: declaration uses `sorry`
+warning: Challenge.lean:442:8: declaration uses `sorry`
+warning: Challenge.lean:447:8: declaration uses `sorry`
+warning: Challenge.lean:452:8: declaration uses `sorry`
+warning: Challenge.lean:455:8: declaration uses `sorry`
+warning: Challenge.lean:458:8: declaration uses `sorry`
+warning: Challenge.lean:465:8: declaration uses `sorry`
+warning: Challenge.lean:471:8: declaration uses `sorry`
+warning: Challenge.lean:474:8: declaration uses `sorry`
+warning: Challenge.lean:478:8: declaration uses `sorry`
+warning: Challenge.lean:482:8: declaration uses `sorry`
+warning: Challenge.lean:486:8: declaration uses `sorry`
+warning: Challenge.lean:491:8: declaration uses `sorry`
+warning: Challenge.lean:496:8: declaration uses `sorry`
+warning: Challenge.lean:508:8: declaration uses `sorry`
+warning: Challenge.lean:513:8: declaration uses `sorry`
+warning: Challenge.lean:522:8: declaration uses `sorry`
+warning: Challenge.lean:526:8: declaration uses `sorry`
+warning: Challenge.lean:530:8: declaration uses `sorry`
+warning: Challenge.lean:534:8: declaration uses `sorry`
+Build completed successfully (5388 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3, LpGowers.theorem_1_4, LpGowers.theorem_1_5, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
+Building Solution
+ℹ [7019/7281] Replayed LpGowers.InverseDifference
+info: LpGowers/InverseDifference.lean:82:34: Try this:
+  [apply] abel_nf
+Build completed successfully (7946 jobs).
+PANIC at LeanExport.dumpConstant LeanExport.Basic:254:48: Constant LpGowers.theorem_1_3 not found in environment.
+backtrace:
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a96265) [0x7f49cf096265]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a8ce97) [0x7f49cf08ce97]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x7f49cf08cf7b]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(panic spec at LeanExport.dumpConstant+0x279) [0x559b2b204f49]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(List.forIn'.loop [arity↓] spec at LeanExport.dumpEnv+0x262) [0x559b2b21dc12]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(LeanExport.dumpEnv [λ]+0x167) [0x559b2b21e087]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(LeanExport.dumpEnv [boxed, λ]+0x13) [0x559b2b21e2e3]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(LeanExport.M.run [arity↓]+0x33) [0x559b2b1f6c43]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a8b037) [0x7f49cf08b037]
+/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a8b425) [0x7f49cf08b425]
+/lib/x86_64-linux-gnu/libc.so.6(+0x928bb) [0x7f49c549e8bb]
+/lib/x86_64-linux-gnu/libc.so.6(+0x110538) [0x7f49c551c538]
+error: Child exited with 134
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3, LpGowers.theorem_1_4, LpGowers.theorem_1_5, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+
+Exit status: 1

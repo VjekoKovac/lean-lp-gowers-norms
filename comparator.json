@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "LpGowers.theorem_1_1",
+    "LpGowers.theorem_1_2",
+    "LpGowers.theorem_1_3",
+    "LpGowers.theorem_1_4",
+    "LpGowers.theorem_1_5"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
+}

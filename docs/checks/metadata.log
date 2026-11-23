@@ -1,0 +1,15 @@
+$ python3 scripts/check-metadata.py ../tooling/v0.4.schema.json
+Validated v0.4 with schema SHA-256 25ff6b25ca4511635aff4443cf20480c15e59dddf19591c730950b442ea54fce
+Metadata result LpGowers.theorem_1_1
+Metadata result LpGowers.theorem_1_2
+Metadata result LpGowers.theorem_1_3a
+Metadata result LpGowers.theorem_1_4
+Metadata result LpGowers.theorem_1_5
+Reached all 151 LpGowers modules from Solution and the umbrella library
+Scanned all 45 vendored proof modules
+Lean source inventory SHA-256 1727f15971ea0fff6c6e9fc53487faeab774ce1c98c059dd649ef60e6910d94a
+34 compared declarations, each with a printed axiom report
+5 full targets configured
+Proof-side trust markers and imports of Challenge: zero
+Metadata and inventory checks passed
+Exit status: 0
