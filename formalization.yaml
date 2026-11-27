@@ -12,16 +12,19 @@ project:
     measure, and f a nonnegative measurable function. Let R_d f(h) be the
     integral over x of the product of f(x+Σ_{i∈S} h_i) over all subsets S
     of {1,…,d}, U(d,p)=‖R_d f‖_p^{1/2^d}, U_d=U(d,1), and q=2^d p/(d+p).
+    
     Theorem 1.1 states that for each d≥2 there is ε_d∈(0,1)
     such that whenever G has no compact open subgroup,
     U_d≤(1−ε_d)U_{d−1}^{d/(3d−2)} U_{d+1}^{1−d/(3d−2)}.
     The same ε_d works for every group, Haar normalization, and input.
+    
     Theorem 1.2(a) gives, for d≥2 and every finite real
     p≥d/(2^d−1), U(d,p)≤‖f‖_q, including the lower endpoint.
     For p strictly above that endpoint, given η>0 there exists δ>0 depending
     only on d,p,η such that for every 0<ε<δ and every 0<N=‖f‖_q<∞ with
     U(d,p)≥(1−ε)N, there exist a compact open subgroup H and a coset C₀
     of H satisfying ‖f−[N/μ(H)^{1/q}]1_{C₀}‖_q≤ηN.
+    
     In Theorem 1.3(a), on ℝⁿ with Lebesgue measure, d≥2, n≥1 and
     1≤p<∞, the least constant in U(d,p)≤C‖f‖_q is
     C=[2^{2d}p^p/(d+p)^{d+p}]^{n/(2^{d+1}p)}. For 0<‖f‖_q<∞,
@@ -32,6 +35,7 @@ project:
     depending only on d,p,n,η such that U(d,p)≥(1−ε)C‖f‖_q for
     0<ε<δ and 0<‖f‖_q<∞ implies the existence of a Gaussian g with
     ‖g‖_q=‖f‖_q and ‖f−g‖_q≤η‖f‖_q.
+    
     For Theorem 1.4(a), for d≥2 write W=∏_i U(d−1,p_i)^{θ_i},
     with finite p_i>0, Σθ_i=1 and (1−1/p)/(d−1)=θ_i(1−2/p_i)
     for every i. Then U(d,p)≤W when 0<p≤1 and every θ_i>0.
@@ -45,6 +49,7 @@ project:
     the product of all r_j, and for every i normalized (R_{d−1} f)^{p_i}
     is within η of the product of all r_j except r_i. Each autocorrelation power is
     divided by its own integral.
+    
     For positive integers d≥2, p≥1, n≥2,
     t is the least exponent bounding the (d,p)-cube energy of every nonempty
     A⊆{0,…,n−1}^m by |A|^t, uniformly in m. Write q* for the greatest
@@ -184,5 +189,6 @@ acknowledgements: >-
   The proofs reuse Mathlib's product Haar and Lebesgue integration,
   Hölder inequalities, Gaussian integrals, real powers, and finite-set
   combinatorics. docs/SOURCE.md attributes the paper's external mathematical
-  ingredients. The checking script is adapted from PalomarTemplate. The
-  repository structure was inspired by the Durcik–Fraccaroli–Roos project. The Euclidean sharp constant uses Yi Han’s geometric Brascamp–Lieb proof at commit 9155169a5ba8f7db77c01c446430e50c0daceb7d.
+  ingredients. The checking script is adapted from PalomarTemplate. 
+  The Euclidean sharp constant uses Yi Han’s geometric Brascamp–Lieb proof 
+  at commit 9155169a5ba8f7db77c01c446430e50c0daceb7d.
