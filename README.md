@@ -1,6 +1,6 @@
 # Estimates for Lᵖ variants of Gowers norms
 
-This Lean 4 project proves all five introductory theorems of Vjekoslav Kovač and Keith M. Rogers, including the Euclidean near-extremizer assertion in Theorem 1.3(b). The standalone Challenge states the original five results. [arXiv:2609.08916v2](https://arxiv.org/abs/2609.08916v2) · [Statement-by-statement mathematical specification](docs/SOURCE.md)
+This Lean 4 project proves all five introductory theorems of Vjekoslav Kovač and Keith M. Rogers. The standalone Challenge states the original five results. [arXiv:2609.08916v2](https://arxiv.org/abs/2609.08916v2) · [Statement-by-statement mathematical specification](docs/SOURCE.md)
 
 | Theorem | Formalized result |
 | --- | --- |
@@ -12,18 +12,6 @@ This Lean 4 project proves all five introductory theorems of Vjekoslav Kovač an
 
 The formalization authors are Vjekoslav Kovač and Keith M. Rogers, as designated by the project maintainer. AI contributions and reviews are identified in the review records. The source matched the uploaded TeX byte for byte. [Source and proofs](docs/SOURCE.md) · [AI statement and proof review](docs/REVIEW.md) · [Euclidean proof details](docs/EUCLIDEAN-REVIEW.md) · [AI review of Theorem 1.3(b)](docs/YOUNG-STABILITY-REVIEW.md) · [Discrete proof details](docs/DISCRETE.md) · [Reused Brascamp–Lieb proof](docs/UPSTREAM.md)
 
-## Verification
+Challenge contains deliberate statement holes. Solution imports the proved library and is compiled independently of Challenge. The proof audit permits only `propext`, `Classical.choice` and `Quot.sound`. [Versions, commands and actual output](docs/VERIFICATION.md)
 
-From the repository root on Linux with elan and bubblewrap installed, run
-
-```sh
-lake exe cache get
-lake build LpGowers Challenge Solution
-lake env lean Axioms.lean
-bash scripts/verify-comparator.sh comparator.components.json
-bash scripts/verify-comparator.sh comparator.json
-```
-
-The five-theorem configuration checks all the introductory results in one run. A second configuration checks additional statement and proof components. Challenge contains deliberate statement holes. Solution imports the proved library and is compiled independently of Challenge. The proof audit permits only `propext`, `Classical.choice` and `Quot.sound`. [Versions, commands and actual output](docs/VERIFICATION.md)
-
-The GitHub workflow starts on any push, including the initial push to `main`. It builds Lean, audits axiom dependencies, and reports the two Comparator outcomes in separate jobs. The verification records distinguish local replay, hosted Actions, and registry submission. [Workflow](.github/workflows/lean.yml) · [Palomar metadata](formalization.yaml) · [Reference project](https://github.com/roos-j/lean-dfr)
+The GitHub workflow starts on any push, including the initial push to `main`. It builds Lean, audits axiom dependencies, and reports the two Comparator outcomes in separate jobs. The verification records distinguish local replay, hosted Actions, and registry submission. [Workflow](.github/workflows/lean.yml)
