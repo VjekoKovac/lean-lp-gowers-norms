@@ -9,9 +9,15 @@ The executable audit inspects environment metadata. No proof calls it. -/
 
 #print axioms LpGowers.theorem_1_1
 #print axioms LpGowers.theorem_1_2
+#print axioms LpGowers.theorem_1_3
 #print axioms LpGowers.theorem_1_3a
 #print axioms LpGowers.theorem_1_4
 #print axioms LpGowers.theorem_1_5
+#print axioms LpGowers.diagonal_young_stability_above_two
+#print axioms LpGowers.local_young_precompact
+#print axioms LpGowers.near_youngEuler
+#print axioms LpGowers.crossing_unit_input
+#print axioms LpGowers.tendsto_dist_youngRealEuler
 #print axioms LpGowers.Checked.subgroupIndicator
 #print axioms LpGowers.Checked.marginal
 #print axioms LpGowers.Checked.degreeOneExponent

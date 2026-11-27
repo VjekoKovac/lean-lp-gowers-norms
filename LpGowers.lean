@@ -31,3 +31,4 @@ public import LpGowers.GaussianAffinePullback
 public import LpGowers.YoungIntervalCompact
 public import LpGowers.YoungCompactness
 public import LpGowers.YoungUnitFrame
+public import LpGowers.YoungStability

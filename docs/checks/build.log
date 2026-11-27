@@ -1,8 +1,18 @@
 $ lake build LpGowers Challenge Solution
-ℹ [7019/7487] Replayed LpGowers.InverseDifference
+ℹ [7019/7127] Replayed LpGowers.InverseDifference
 info: LpGowers/InverseDifference.lean:82:34: Try this:
   [apply] abel_nf
-⚠ [7938/7950] Replayed Challenge
+⚠ [7976/8004] Replayed LpGowers.YoungPowerScalar
+info: LpGowers/YoungPowerScalar.lean:38:77: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: LpGowers/YoungPowerScalar.lean:38:73: Unused tactic linter: `try` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [7999/8004] Replayed Challenge
 warning: Challenge.lean:348:8: declaration uses `sorry`
 warning: Challenge.lean:351:8: declaration uses `sorry`
 warning: Challenge.lean:354:8: declaration uses `sorry`
@@ -38,10 +48,5 @@ warning: Challenge.lean:522:8: declaration uses `sorry`
 warning: Challenge.lean:526:8: declaration uses `sorry`
 warning: Challenge.lean:530:8: declaration uses `sorry`
 warning: Challenge.lean:534:8: declaration uses `sorry`
-✔ [7941/7950] Built LpGowers.YoungIntervalCompact (4.1s)
-✔ [7943/7950] Built LpGowers.DiscreteBinary (4.6s)
-✔ [7945/7950] Built LpGowers (2.3s)
-✔ [7948/7950] Built Solution (2.6s)
-Build completed successfully (7950 jobs).
-
+Build completed successfully (8004 jobs).
 Exit status: 0

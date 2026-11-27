@@ -30,20 +30,20 @@ def YoungAffinePrecompact (n : ℕ) : Prop :=
       Tendsto (fun k => lpDist (euclideanMeasure n) (criticalExponent 1 s)
         ((A k).act (criticalExponent 1 s) (F (φ k))) g) atTop (𝓝 0)
 
-private theorem mass_congr_ae {n : ℕ} {q : ℝ} {f g : Rn n → ℝ≥0}
+theorem mass_congr_ae {n : ℕ} {q : ℝ} {f g : Rn n → ℝ≥0}
     (e : f =ᵐ[euclideanMeasure n] g) :
     (∫⁻ x, (f x : ℝ≥0∞)^q ∂euclideanMeasure n) =
       ∫⁻ x, (g x : ℝ≥0∞)^q ∂euclideanMeasure n :=
   lintegral_congr_ae (e.mono fun x hx => by simp [hx])
 
-private theorem distance_congr_right {n : ℕ} (q : ℝ) (f : Rn n → ℝ≥0)
+theorem distance_congr_right {n : ℕ} (q : ℝ) (f : Rn n → ℝ≥0)
     {g h : Rn n → ℝ≥0} (e : g =ᵐ[euclideanMeasure n] h) :
     lpDist (euclideanMeasure n) q f g = lpDist (euclideanMeasure n) q f h := by
   unfold lpDist lp
   congr 1
   exact lintegral_congr_ae (e.mono fun x hx => by simp [hx])
 
-private theorem unit_moment_le {n : ℕ} (s : ℝ) (hs : 1 ≤ s) (F : Rn n → ℝ≥0)
+theorem unit_moment_le {n : ℕ} (s : ℝ) (hs : 1 ≤ s) (F : Rn n → ℝ≥0)
     (hf : AEMeasurable F (euclideanMeasure n))
     (hm : ∫⁻ x, (F x : ℝ≥0∞)^criticalExponent 1 s ∂euclideanMeasure n = 1) :
     cubeMoment 1 n s F ≤ youngMomentConstant 1 n s := by

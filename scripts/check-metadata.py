@@ -23,7 +23,10 @@ permitted = {"propext", "Classical.choice", "Quot.sound"}
 for config in [checked, overall]:
     assert set(config["permitted_axioms"]) == permitted
     assert len(config["theorem_names"]) == len(set(config["theorem_names"]))
+assert {result["declaration"] for result in metadata["status"]["main_results"]} == set(overall["theorem_names"])
+assert set(overall["theorem_names"]) <= set(checked["theorem_names"])
 for result in metadata["status"]["main_results"]:
+    assert result["comparator_config"] == "comparator.json"
     assert result["declaration"] in checked["theorem_names"]
     assert result["sorry_count"] == 0 and set(result["axioms"]) <= permitted
     print(f"Metadata result {result['declaration']}")
@@ -44,6 +47,14 @@ def lean_code(source):
     return "".join(kept)
 
 
+# Challenge uses fully qualified namespace blocks and explicit theorem commands.
+challenge_names = set()
+for namespace, body in re.findall(
+    r"^namespace ([\w.]+)\s*$(.*?)^end \1$", lean_code((ROOT / "Challenge.lean").read_text()), re.M | re.S
+):
+    for name in re.findall(r"^theorem (\w+)", body, re.M):
+        challenge_names.add(f"{namespace}.{name}")
+assert challenge_names == set(checked["theorem_names"]), "Challenge and component inventories differ"
 modules = {path.stem for path in (ROOT / "LpGowers").glob("*.lean")}
 todo = [ROOT / "Solution.lean", ROOT / "LpGowers.lean", ROOT / "GeometricBrascampLieb.lean"]
 audited = set()

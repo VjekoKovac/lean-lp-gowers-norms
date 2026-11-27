@@ -58,8 +58,8 @@ theorem youngMomentConstant_one (n : ℕ) (s : ℝ) :
 Zero tolerance includes the classical exact equality statement. The function
 `cubeMoment 1 n s F` is the `s`th power of the convolution norm, and the
 factor is its sharp bound at unit input norm. -/
-def SharpYoungInverse (n : ℕ) : Prop :=
-  ∀ s : ℝ, 1 < s → ∀ τ : ℝ, 0 ≤ τ → ∃ α : ℝ,
+def SharpYoungInverseAt (n : ℕ) (s : ℝ) : Prop :=
+  ∀ τ : ℝ, 0 ≤ τ → ∃ α : ℝ,
     0 ≤ α ∧ α < 1 ∧ (0 < τ → 0 < α) ∧ (τ = 0 → α = 0) ∧
     ∀ F : Rn n → ℝ≥0, AEMeasurable F (euclideanMeasure n) →
       (∫⁻ x, (F x : ℝ≥0∞)^(criticalExponent 1 s) ∂euclideanMeasure n) = 1 →
@@ -67,6 +67,12 @@ def SharpYoungInverse (n : ℕ) : Prop :=
       ∃ V : Rn n → ℝ≥0, IsEuclideanGaussian V ∧
         (∫⁻ x, (V x : ℝ≥0∞)^(criticalExponent 1 s) ∂euclideanMeasure n) = 1 ∧
         lpDist (euclideanMeasure n) (criticalExponent 1 s) F V ≤ ENNReal.ofReal τ
+
+/-- The full sharp Young inverse, over all output exponents. -/
+def SharpYoungInverse (n : ℕ) : Prop := ∀ s : ℝ, 1 < s → SharpYoungInverseAt n s
+
+/-- The range of last-step output exponents used for degrees at least two. -/
+def YoungInverseAboveTwo (n : ℕ) : Prop := ∀ s : ℝ, 2 ≤ s → SharpYoungInverseAt n s
 
 def lastYoungPower (k : ℕ) (p : ℝ) : ℝ := (2 : ℝ)^k * p / (p+k)
 
@@ -181,7 +187,7 @@ private lemma transfer_with_zero {n : ℕ} {r γ η : ℝ} (hr : 0 < r) (hγ : 0
 
 /-- Given sharp Young and its inverse, this is the desired conclusion for
 unit inputs; `η=0` yields the equality classification with zero error. -/
-theorem euclidean_inverse_unit {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : SharpYoungInverse n)
+theorem euclidean_inverse_unit_ge_two {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : YoungInverseAboveTwo n)
     (d : ℕ) (hd : 2 ≤ d) (p : ℝ) (hp : 1 ≤ p) (η : ℝ) (hη : 0 ≤ η) :
     ∃ β : ℝ, 0 ≤ β ∧ β < 1 ∧ (0 < η → 0 < β) ∧ ∀ f : Rn n → ℝ≥0,
       AEMeasurable f (euclideanMeasure n) →
@@ -210,7 +216,9 @@ theorem euclidean_inverse_unit {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : Sha
   have htr : t*r=q := lastYoungPower_critical k p hp'
   have hrγ : r/γ=q := by simpa [γ,div_eq_mul_inv,mul_comm] using htr
   obtain ⟨τ,hτ,hτpos,htrn⟩ := transfer_with_zero (n := n) hr hγ hη
-  obtain ⟨α,hα,hα1,hαpos,_,hinv⟩ := hInv s hs τ hτ
+  obtain ⟨α,hα,hα1,hαpos,_,hinv⟩ := hInv s (by
+    have hk : (1:ℝ) ≤ k := by exact_mod_cast (by omega : 1 ≤ k)
+    dsimp [s]; linarith) τ hτ
   let β := 1-(1-α)^(1/b)
   have hA : 0 < 1-α := by linarith
   have hB : 0 ≤ β := sub_nonneg.mpr (Real.rpow_le_one hA.le (by linarith) (by positivity))
@@ -246,9 +254,21 @@ theorem euclidean_inverse_unit {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : Sha
   change lpDist μ q f g ≤ _
   simpa [U, γ, ← NNReal.rpow_mul, ht.ne', g] using h
 
+theorem euclidean_inverse_unit {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : SharpYoungInverse n)
+    (d : ℕ) (hd : 2 ≤ d) (p : ℝ) (hp : 1 ≤ p) (η : ℝ) (hη : 0 ≤ η) :
+    ∃ β : ℝ, 0 ≤ β ∧ β < 1 ∧ (0 < η → 0 < β) ∧ ∀ f : Rn n → ℝ≥0,
+      AEMeasurable f (euclideanMeasure n) →
+      (∫⁻ x, (f x : ℝ≥0∞)^(criticalExponent d p) ∂euclideanMeasure n) = 1 →
+      ENNReal.ofReal (1-β) * ENNReal.ofReal (sharpEuclideanConstant d n p) ≤
+        gowers (euclideanMeasure n) d p f →
+      ∃ g : Rn n → ℝ≥0, IsEuclideanGaussian g ∧
+        (∫⁻ x, (g x : ℝ≥0∞)^(criticalExponent d p) ∂euclideanMeasure n) = 1 ∧
+        lpDist (euclideanMeasure n) (criticalExponent d p) f g ≤ ENNReal.ofReal η :=
+  euclidean_inverse_unit_ge_two hY (fun s hs => hInv s (by linarith)) d hd p hp η hη
+
 /-- The source relative-error conclusions in the original normalization,
 from sharp Young and the exact and near-extremiser results for sharp Young. -/
-theorem euclidean_inverse_finite {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : SharpYoungInverse n)
+theorem euclidean_inverse_finite_ge_two {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : YoungInverseAboveTwo n)
     (d : ℕ) (hd : 2 ≤ d) (p : ℝ) (hp : 1 ≤ p) (η : ℝ) (hη : 0 ≤ η) :
     ∃ β : ℝ, 0 ≤ β ∧ β < 1 ∧ (0 < η → 0 < β) ∧ ∀ f : Rn n → ℝ≥0,
       let μ := euclideanMeasure n
@@ -259,7 +279,7 @@ theorem euclidean_inverse_finite {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : S
         gowers μ d p f →
       ∃ g : Rn n → ℝ≥0, IsEuclideanGaussian g ∧ lp μ q (liftNN g) = N ∧
         lpDist μ q f g ≤ ENNReal.ofReal η * N := by
-  obtain ⟨β,hβ,hβ1,hβpos,H⟩ := euclidean_inverse_unit hY hInv d hd p hp η hη
+  obtain ⟨β,hβ,hβ1,hβpos,H⟩ := euclidean_inverse_unit_ge_two hY hInv d hd p hp η hη
   refine ⟨β,hβ,hβ1,hβpos,?_⟩
   intro f μ q N hf hfin hn hnear
   have hp' := lt_of_lt_of_le zero_lt_one hp
@@ -280,12 +300,25 @@ theorem euclidean_inverse_finite {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : S
   · rw [← hamp, lpDist_smul_input μ a F g hq, ← ha, mul_comm (ENNReal.ofReal η)]
     exact mul_le_mul_right hdist _
 
+theorem euclidean_inverse_finite {n : ℕ} (hY : SharpDiagonalYoung n) (hInv : SharpYoungInverse n)
+    (d : ℕ) (hd : 2 ≤ d) (p : ℝ) (hp : 1 ≤ p) (η : ℝ) (hη : 0 ≤ η) :
+    ∃ β : ℝ, 0 ≤ β ∧ β < 1 ∧ (0 < η → 0 < β) ∧ ∀ f : Rn n → ℝ≥0,
+      let μ := euclideanMeasure n
+      let q := criticalExponent d p
+      let N := lp μ q (liftNN f)
+      AEMeasurable f μ → N < ⊤ → (¬ f =ᵐ[μ] 0) →
+      ENNReal.ofReal (1-β) * ENNReal.ofReal (sharpEuclideanConstant d n p) * N ≤
+        gowers μ d p f →
+      ∃ g : Rn n → ℝ≥0, IsEuclideanGaussian g ∧ lp μ q (liftNN g) = N ∧
+        lpDist μ q f g ≤ ENNReal.ofReal η * N :=
+  euclidean_inverse_finite_ge_two hY (fun s hs => hInv s (by linarith)) d hd p hp η hη
+
 /-- Full Theorem 1.3 from the precise two external Euclidean inputs in §4.
 The Gaussian tests, optimality, change of variables, Young iteration,
 equality descent, near-equality descent, and power transfer are all proved. -/
-theorem euclideanTheorem_of_sharpYoung_and_inverse
+theorem euclideanTheorem_of_sharpYoung_and_inverse_ge_two
     (hY : ∀ n : ℕ, 1 ≤ n → SharpDiagonalYoung n)
-    (hInv : ∀ n : ℕ, 1 ≤ n → SharpYoungInverse n) : EuclideanTheorem := by
+    (hInv : ∀ n : ℕ, 1 ≤ n → YoungInverseAboveTwo n) : EuclideanTheorem := by
   intro d n p hd hn hp μ q K
   have hp' := lt_of_lt_of_le zero_lt_one hp
   have hq : 0 < q := by dsimp [q,criticalExponent]; positivity
@@ -294,7 +327,7 @@ theorem euclideanTheorem_of_sharpYoung_and_inverse
   · intro f hf hfin hnonzero
     refine ⟨?_, ae_gaussian_equality d p hp' f⟩
     intro he
-    obtain ⟨β,hβ,_,_,H⟩ := euclidean_inverse_finite (hY n hn) (hInv n hn) d hd p hp 0 le_rfl
+    obtain ⟨β,hβ,_,_,H⟩ := euclidean_inverse_finite_ge_two (hY n hn) (hInv n hn) d hd p hp 0 le_rfl
     have hcoef : ENNReal.ofReal (1-β) ≤ 1 := by exact_mod_cast (ENNReal.ofReal_le_one.mpr (by linarith))
     have hlow : ENNReal.ofReal (1-β)*K*lp μ q (liftNN f) ≤ gowers μ d p f := by
       rw [he]
@@ -305,12 +338,17 @@ theorem euclideanTheorem_of_sharpYoung_and_inverse
     exact ⟨g,hg,ae_eq_of_lpDist_zero hq hf (gaussian_measurable hg).aemeasurable
       (le_zero_iff.mp (by simpa using hdist))⟩
   · intro η hη
-    obtain ⟨β,_,_,hβpos,H⟩ := euclidean_inverse_finite (hY n hn) (hInv n hn) d hd p hp η hη.le
+    obtain ⟨β,_,_,hβpos,H⟩ := euclidean_inverse_finite_ge_two (hY n hn) (hInv n hn) d hd p hp η hη.le
     refine ⟨β,hβpos hη,?_⟩
     intro ε _ hε f hf hfin hnonzero hnear
     apply H f hf hfin hnonzero
     refine le_trans ?_ hnear
     gcongr
+
+theorem euclideanTheorem_of_sharpYoung_and_inverse
+    (hY : ∀ n : ℕ, 1 ≤ n → SharpDiagonalYoung n)
+    (hInv : ∀ n : ℕ, 1 ≤ n → SharpYoungInverse n) : EuclideanTheorem :=
+  euclideanTheorem_of_sharpYoung_and_inverse_ge_two hY (fun n hn s hs => hInv n hn s (by linarith))
 
 /-- The exact, normalized equality classification in the diagonal sharp Young
 inequality. No approximation statement is included in this hypothesis. -/

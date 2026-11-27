@@ -6,8 +6,8 @@ project:
   responsible_maintainers: ["Vjekoslav Kovač"]
   license: "Apache-2.0"
   description: >-
-    This proof development records all five introductory theorems of
-    arXiv:2609.08916v2 and proves the following source results. Let G be a
+    This Lean development proves Theorems 1.1–1.5 in the introduction to
+    arXiv:2609.08916v2. Let G be a
     second-countable locally compact Hausdorff abelian group, μ any Haar
     measure, and f a nonnegative measurable function. Let R_d f(h) be the
     integral over x of the product of f(x+Σ_{i∈S} h_i) over all subsets S
@@ -27,8 +27,8 @@ project:
     C=[2^{2d}p^p/(d+p)^{d+p}]^{n/(2^{d+1}p)}. For 0<‖f‖_q<∞,
     equality holds if and only if f agrees almost everywhere with
     c exp(−(x−x₀)ᵀM(x−x₀)), where c>0, x₀∈ℝⁿ, and M is a real
-    symmetric positive-definite matrix. Part 1.3(b) remains open in
-    this development. It asserts that for each η>0 there exists δ>0
+    symmetric positive-definite matrix. Part 1.3(b) proves that for
+    each η>0 there exists δ>0
     depending only on d,p,n,η such that U(d,p)≥(1−ε)C‖f‖_q for
     0<ε<δ and 0<‖f‖_q<∞ implies the existence of a Gaussian g with
     ‖g‖_q=‖f‖_q and ‖f−g‖_q≤η‖f‖_q.
@@ -74,11 +74,10 @@ related_formalizations:
     note: "Yi Han's extended nonnegative geometric Brascamp–Lieb inequality, ported from Lean 4.33 to 4.36."
 status:
   scope: >-
-    Partial proof development. Theorems 1.1, 1.2, 1.4, and 1.5 are proved in full. The five complete
-    headline propositions are independently stated in Challenge.lean.
-    The main Comparator configuration demands all five. The separate
-    component configuration only advertises proved declarations. See
-    docs/SOURCE.md and docs/VERIFICATION.md for detailed coverage.
+    Theorems 1.1–1.5 are proved in full, including both parts of Theorem 1.3.
+    The five independent headline statements are in Challenge.lean and their
+    unconditional proofs are in Solution.lean. comparator.json checks all five.
+    comparator.components.json checks all 35 declarations in the Challenge.
   # Counts cover the proof library and Solution; Challenge holes specify targets.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -88,31 +87,31 @@ status:
       file: "Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.components.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "LpGowers.theorem_1_2"
       file: "Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.components.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
-    - declaration: "LpGowers.theorem_1_3a"
+    - declaration: "LpGowers.theorem_1_3"
       file: "Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.components.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "LpGowers.theorem_1_4"
       file: "Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.components.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "LpGowers.theorem_1_5"
       file: "Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator.components.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
 automation:
   methods:
@@ -121,7 +120,7 @@ automation:
       framework: "Codex Work Mode with independent AI source review and Lean 4"
       tool_setup: "Mathlib, Lake, Lean kernel, Lean Comparator, NanoDa and con-ron. Exact toolchain and commands are in docs/VERIFICATION.md."
       cost:
-        wall_time: "One interactive development session"
+        wall_time: "Not timed across development sessions"
         spend_usd: "not tracked"
         hardware: "Linux x86_64 workspace"
       prompting_notes: "Follow the manuscript proof routes, keep quantifiers and constants source-faithful, and report open obligations explicitly."
@@ -135,10 +134,14 @@ fidelity:
     integrals. Uniform little-o conclusions use tolerance-before-threshold
     quantification. The finite set energy is defined by counting tuples.
     The code and the source use positive integers for the discrete parameter p.
+    Section 4 uses a near-extremizer theorem for sharp Young. Lean proves the
+    required diagonal case for nonnegative inputs at s=p+d−1≥2. It follows
+    Christ’s nonnegative heat-flow localization and proves qualitative local
+    compactness by differentiating the normalized Euler map at a Gaussian.
 review:
   status: "Independently AI-reviewed; no human statement approval recorded."
   reviewers: ["Separate Codex AI statement reviewer", "Codex AI integration reviewer"]
-  notes: "The source, independent statement and proof checks, and their limits are documented in docs/REVIEW.md and docs/VERIFICATION.md."
+  notes: "The source, independent statement and proof checks, and their limits are documented in docs/REVIEW.md, docs/YOUNG-STABILITY-REVIEW.md and docs/VERIFICATION.md."
 alignment:
   namespace: "LpGowers"
   statements:
@@ -153,10 +156,16 @@ alignment:
       status: "proved"
       note: "For p strictly above the endpoint and finite nonzero Lq input, nearness to equality implies normalized Lq distance tending to zero to the amplitude ‖f‖q/μ(H)^{1/q} on a single coset of a compact open subgroup, uniformly in G and μ."
     - source: "Theorem 1.3, sharp Euclidean inequality and Gaussian stability"
-      lean: "LpGowers.EuclideanTheorem"
-      module: "LpGowers.Euclidean"
-      status: "part (a) proved in full; part (b) outstanding"
-      note: "LpGowers.theorem_1_3a proves the universal sharp upper bound, optimality, and both directions of Gaussian equality classification. A checked reduction shows that part (b) follows from strong Lʳ precompactness, modulo affine transformations, of normalized near-extremizing sequences for ordinary Euclidean sharp Young. This compactness input is outstanding."
+      lean: "LpGowers.theorem_1_3"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Part (a) proves the sharp inequality and characterizes every finite nonzero
+        equality case. Part (b) gives Gaussian approximation in relative Lq distance
+        with exactly the input norm, uniformly in the input. The formal proof establishes
+        the needed diagonal Young stability using heat flow, strong local compactness
+        of extremizing sequences, and the equality classification, then applies the
+        degree-lowering and power-transfer argument of §4.
     - source: "Theorem 1.4, forward and reverse degree lowering, and near equality"
       lean: "LpGowers.theorem_1_4"
       module: "Solution"

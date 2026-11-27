@@ -1,9 +1,15 @@
 $ lake env lean Axioms.lean
 'LpGowers.theorem_1_1' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.theorem_1_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LpGowers.theorem_1_3' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.theorem_1_3a' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.theorem_1_4' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.theorem_1_5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LpGowers.diagonal_young_stability_above_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LpGowers.local_young_precompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LpGowers.near_youngEuler' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LpGowers.crossing_unit_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LpGowers.tendsto_dist_youngRealEuler' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.Checked.subgroupIndicator' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.Checked.marginal' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.Checked.degreeOneExponent' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -38,6 +44,5 @@ $ lake env lean Axioms.lean
 'LpGowers.euclideanTheorem_of_affinePrecompact' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.heat_error_le_initial_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LpGowers.subsequence_of_interval_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
-Audited 811 LpGowers declarations. Permitted axioms: [propext, Classical.choice, Quot.sound].
-
+Audited 1017 LpGowers declarations. Permitted axioms: [propext, Classical.choice, Quot.sound].
 Exit status: 0

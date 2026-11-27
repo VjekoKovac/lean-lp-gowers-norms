@@ -2,7 +2,7 @@
 
 The full, standalone targets are in `Challenge.lean`. This file imports Mathlib and contains the definitions specifying the meaning of all five statements. Its deliberate proof holes make it possible to review and compare the statements before any solution exists. `Solution.lean` uses the declarations proved by the separate `LpGowers` library. No Solution import reaches Challenge.
 
-The archived proof source tree completed the Lake build (7,950 jobs with dependency caches). The transitive axiom audit checked 811 declarations in the project namespace. The con-ron replay accepted 59,436 declarations in the exported proof dependencies. The independent Challenge has 35 statement targets, comprising the five full theorems and 30 component statements. The component configuration verifies 34 of these, including full Theorems 1.1, 1.2, 1.4, and 1.5 and the three clauses of Theorem 1.3(a). The one absent Solution declaration is the combined Theorem 1.3, whose outstanding mathematical assertion is part (b).
+The full Lake build completed 8,004 jobs with cached dependencies. The axiom audit examined 1,017 project declarations, including the unconditional `LpGowers.theorem_1_3`. The independent Challenge specifies five full theorems and 30 additional statements. Both Comparator configurations passed with exit status zero. Lean, NanoDa and con-ron accepted the five full theorems together, and the same three kernels accepted all 35 declarations together. Con-ron checked 59,770 exported declarations for the five-theorem run and 60,107 for the 35-declaration run. Both configurations use the same standalone Challenge, whose SHA-256 is `cb60a895a3561c06a47e4c24b5f96b790f75ab052928902f3f7eeb8909a09a1e`.
 
 ## Toolchain and sources of trust
 
@@ -35,7 +35,7 @@ curl -fLsS https://raw.githubusercontent.com/mathlib-initiative/formalization.ya
 python3 scripts/check-metadata.py /tmp/formalization-v0.4.schema.json
 ```
 
-The review machine restricted network configuration inside nested sandboxes. On this machine the last two commands were run as follows. The adapter creates an empty network namespace, verifies it has only loopback and no external routes, and invokes the toolchain's normal Comparator through bubblewrap. Ordinary Linux hosts and the GitHub workflow use the commands above.
+The review machine restricted network configuration inside nested sandboxes. The two archived Comparator runs invoked the following wrapper. The adapter creates an empty network namespace, verifies it has only loopback and no external routes, and invokes the toolchain's normal Comparator through bubblewrap. Ordinary Linux hosts and the GitHub workflow use the commands above.
 
 ```sh
 scripts/with-offline-namespace.sh scripts/verify-comparator.sh comparator.components.json
@@ -47,18 +47,18 @@ scripts/with-offline-namespace.sh scripts/verify-comparator.sh comparator.json
 | [Lean build](checks/build.log) | Elaboration of all proof modules, Challenge and Solution |
 | [Axiom audit](checks/axioms.log) | Individual printed reports for the selected results and a transitive audit of every exported declaration in the project namespace |
 | [Confirmed statements](checks/components-comparator.log) | Comparison with the independent Challenge followed by external and default kernel checking |
-| [All five target declarations](checks/five-target-comparator.log) | The completion check stops when it cannot export the first outstanding headline proof, `LpGowers.theorem_1_3` |
+| [All five target declarations](checks/five-target-comparator.log) | Exact five-target comparison, including both parts of Theorem 1.3 in one declaration |
 | [Metadata and source checks](checks/metadata.log) | YAML schema validation, comparison-target inventory and source-level trust checks |
 
-The full-target failure is retained in the repository. Since the exporter stops at the first missing name, this log alone cannot classify subsequent theorems. The component comparison explicitly includes every completed headline theorem. A successful `lake build Challenge` establishes that the targets are well formed, and its warnings identify the expected statement holes.
+The metadata check reached all 175 project proof modules and all 45 vendored Brascamp–Lieb modules. The Lean source inventory has SHA-256 `5b898ff31f2f50c5325c47b8462afbf5abfe360fdf8759d8a4b0163212c2486c`. Warnings in Challenge identify its deliberate statement holes. The solution export, namespace-wide axiom audit, and external replays check the proof side. Independent mathematical reviews, including the specialized endpoint test for Theorem 1.3(b), are identified as AI reviews. [Statement and proof review](REVIEW.md) · [Young stability review](YOUNG-STABILITY-REVIEW.md)
 
 ## Source attribution
 
 * The quantitative three-moment argument, the two adjoint degree-lowering estimates, the Euclidean exponent recursion, the leakage estimates, and the lattice energy presentation follow the manuscript with the specific variations identified in the review and source guide.
-* The LCA inverse argument follows the nonnegative part of Eisner–Tao. It uses the compact-open small-difference argument and an explicit reduction to normalized indicators. The weighted Hölder and functional Loomis–Whitney stability estimates have formal proofs. The Euclidean sharp Young equality classification is proved by heat flow. Uniform Gaussian approximation at positive tolerance remains an input to the reduction for Theorem 1.3(b).
+* The LCA inverse argument follows the nonnegative part of Eisner–Tao. It uses the compact-open small-difference argument and an explicit reduction to normalized indicators. The weighted Hölder and functional Loomis–Whitney stability estimates have formal proofs. The Euclidean sharp Young equality classification is proved by heat flow. Theorem 1.3(b) also proves uniform approximation at every positive tolerance. Its final diagonal Young step combines heat-flow localization, local compactness for approximate fixed points of the normalized Euler map, and the exact Gaussian classification. The proof covers the required output exponents $s=p+d-1\geq2$, including $s=2$.
 * The proofs use Mathlib's `ENNReal.lintegral_prod_norm_pow_le`, `ENNReal.lintegral_Lp_add_le`, translation invariance of Haar measure, finite-product measure-preserving equivalences, finite-product Tonelli, Gaussian integration and real-power identities. Individual module imports record the exact dependencies.
 * The checking script adapts the Palomar template at commit `2891de4c48955af824969a263d31b25e7a9a1406`. The workflow and comparison data are structured for the five-theorem goal. [Palomar template](https://github.com/PalomarRegistry/PalomarTemplate) · [Comparator documentation](https://lean-lang.org/doc/reference/latest/Build-Tools-and-Distribution/Lake/#lake-comparator)
 
 ## Publication status
 
-The repository includes a push-triggered GitHub Actions workflow. During preparation the GitHub repository was empty and this environment had no authenticated Git push or browser session. The archived checks were run locally. The default `comparator.json` requests all five full theorems. Palomar submission for that scope is pending a proof of Theorem 1.3(b) and a successful full comparison.
+The included GitHub Actions workflow triggers on pushes, pull requests, and manual dispatch. The archived outputs were produced locally. A hosted Actions run requires this commit to reach GitHub. Palomar makes its own submission and editorial decisions. This archive records no hosted run, registry submission, or human mathematical review.

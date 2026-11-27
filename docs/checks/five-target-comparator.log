@@ -40,25 +40,28 @@ warning: Challenge.lean:534:8: declaration uses `sorry`
 Build completed successfully (5388 jobs).
 Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3, LpGowers.theorem_1_4, LpGowers.theorem_1_5, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
 Building Solution
-ℹ [7019/7281] Replayed LpGowers.InverseDifference
+ℹ [7019/7179] Replayed LpGowers.InverseDifference
 info: LpGowers/InverseDifference.lean:82:34: Try this:
   [apply] abel_nf
-Build completed successfully (7946 jobs).
-PANIC at LeanExport.dumpConstant LeanExport.Basic:254:48: Constant LpGowers.theorem_1_3 not found in environment.
-backtrace:
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a96265) [0x7f49cf096265]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a8ce97) [0x7f49cf08ce97]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x7f49cf08cf7b]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(panic spec at LeanExport.dumpConstant+0x279) [0x559b2b204f49]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(List.forIn'.loop [arity↓] spec at LeanExport.dumpEnv+0x262) [0x559b2b21dc12]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(LeanExport.dumpEnv [λ]+0x167) [0x559b2b21e087]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(LeanExport.dumpEnv [boxed, λ]+0x13) [0x559b2b21e2e3]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/leanexport(LeanExport.M.run [arity↓]+0x33) [0x559b2b1f6c43]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a8b037) [0x7f49cf08b037]
-/workspace/scratch/86b9ece199bb/tooling/lean-4.36.0-linux/bin/../lib/lean/libleanshared.so(+0x9a8b425) [0x7f49cf08b425]
-/lib/x86_64-linux-gnu/libc.so.6(+0x928bb) [0x7f49c549e8bb]
-/lib/x86_64-linux-gnu/libc.so.6(+0x110538) [0x7f49c551c538]
-error: Child exited with 134
-Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3, LpGowers.theorem_1_4, LpGowers.theorem_1_5, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+⚠ [7976/8000] Replayed LpGowers.YoungPowerScalar
+info: LpGowers/YoungPowerScalar.lean:38:77: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: LpGowers/YoungPowerScalar.lean:38:73: Unused tactic linter: `try` can be removed.
 
-Exit status: 1
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Build completed successfully (8000 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, LpGowers.theorem_1_1, LpGowers.theorem_1_2, LpGowers.theorem_1_3, LpGowers.theorem_1_4, LpGowers.theorem_1_5, propext, Classical.choice, Quot.sound, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+Running con-ron kernel on solution
+con-ron: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)
+con-ron: accepted 59770 declarations (--verified)
+con-ron kernel accepts the solution
+Running nanoda kernel on solution
+nanoda kernel accepts the solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!
+Exit status: 0

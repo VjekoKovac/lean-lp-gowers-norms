@@ -17,6 +17,10 @@ theorem theorem_1_1 : ImprovedLogConvexity := improved_log_convexity
 /-- Theorem 1.2, the Lebesgue bound and uniform classification of near-extremisers. -/
 theorem theorem_1_2 : LebesgueEstimate := lebesgueEstimate
 
+/-- Theorem 1.3, including the sharp constant, all equality cases and
+Gaussian stability for finite nonzero inputs. -/
+theorem theorem_1_3 : EuclideanTheorem := euclideanTheorem
+
 /-- The complete sharp inequality, optimality and equality classification of Theorem 1.3(a). -/
 theorem theorem_1_3a (d n : ℕ) (p : ℝ) (hd : 2 ≤ d) (hn : 1 ≤ n) (hp : 1 ≤ p) :
     let μ := euclideanMeasure n
